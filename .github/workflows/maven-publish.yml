@@ -4,8 +4,7 @@
 name: Maven Deploy Package
 
 on:
-  on:
-    workflow_dispatch:
+  workflow_dispatch:
   release:
     types: [created]
   push:
