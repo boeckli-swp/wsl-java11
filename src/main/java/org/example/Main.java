@@ -1,11 +1,16 @@
 package org.example;
 
+import org.apache.commons.lang3.SystemUtils;
+
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
 
-        //System.out.println("Hello world!");
+        System.out.println("Hello world!");
+
+        System.out.println("Java Home is: " + SystemUtils.getJavaHome());
+        
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();
