@@ -3,6 +3,7 @@ name: release version
 # https://stackoverflow.com/questions/58254332/maven-release-from-github-actions
 on:
   workflow_dispatch:
+    
     inputs:
       releaseVersion:
         description: "Default version to use when preparing a release."
