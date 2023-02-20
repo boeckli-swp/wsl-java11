@@ -1,19 +1,21 @@
 package org.example;
 
-import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 
-@Log4j2
 public class Main {
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
 
         System.out.println("Hello world!");
 
         System.out.println("Java Home is: " + SystemUtils.getJavaHome());
 
-        log.info("hallo echo");
+        logger.info("hallo echo");
         
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
