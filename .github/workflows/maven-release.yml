@@ -1,4 +1,4 @@
-name: release version
+name: Maven Release
 
 # https://stackoverflow.com/questions/58254332/maven-release-from-github-actions
 on:
