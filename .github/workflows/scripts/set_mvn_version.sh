@@ -13,11 +13,11 @@ echo "### Branch is $branch"
 
 # get current version of the top level pom
 MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-          echo "::set-output name=version::MVN_VERSION"
+          echo "version=MVN_VERSION" >> $GITHUB_OUTPUT
 echo "### Current version is: $MVN_VERSION"
 
 # extract version suffix
-suffix=$(echo MVN_VERSION | cut -d \- -f 2)
+suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
 echo "### Suffix is: $suffix"
 
 # build new version
