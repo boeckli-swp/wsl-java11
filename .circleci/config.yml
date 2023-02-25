@@ -25,6 +25,18 @@ jobs:
           command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
           
       - run:
+          name: "TRY"
+          command: |
+            branch=${CIRCLE_BRANCH//[\/]/_}
+            echo "### Normalized Branch Name is $branch"
+            
+            MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
+            echo 'export ORIGINAL_MVN_VERSION="$MVN_VERSION"' >> "$BASH_ENV"
+            
+            echo "### TODO1 Current version is: $MVN_VERSION"
+            echo "### TODO1 Current version is: $ORIGINAL_MVN_VERSION"
+          
+      - run:
           name: "Set Maven Versions"
           command: |
             echo "Calling set_mvn_version.sh"
