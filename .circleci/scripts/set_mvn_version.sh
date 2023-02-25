@@ -21,6 +21,7 @@ echo "### Current version is: $MVN_VERSION"
 
 echo 'export GUGUS="FOO"' >> "$BASH_ENV"
 echo "### TODO: $GUGUS"
+echo "### TODO: $BASH_ENV"
 
 
 
