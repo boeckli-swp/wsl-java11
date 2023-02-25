@@ -16,6 +16,9 @@ MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
 echo "ORIGINAL_MVN_VERSION=$MVN_VERSION" >> "$GITHUB_OUTPUT"
 echo "### Current version is: $MVN_VERSION"
 
+guguseli=$(mvn help:evaluate -Dexpression=project.version | grep -v '\[.*')
+echo "### Current version is: guguseli"
+
 # extract version suffix
 suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
 echo "### Suffix is: $suffix"

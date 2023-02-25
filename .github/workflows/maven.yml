@@ -41,18 +41,6 @@ jobs:
     - name: get_branch_version
       run: echo "### The Branch Version is ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"  
       
-    - name: set hello
-      id: step1
-      run: echo "test=hello" >> "$GITHUB_OUTPUT"
-    - name: set world 
-      id: step2
-      run: echo "test=world" >> "$GITHUB_OUTPUT"  
-    - name: Get hello world
-      env:
-        OUTPUT1: ${{needs.job1.outputs.output1}}
-        OUTPUT2: ${{needs.job1.outputs.output2}}
-      run: echo "### Say Hello ${{ steps.step1.outputs.test }} ${{ steps.step2.outputs.test }}"  
-      
     - name: Build with Maven
       run: mvn -B install -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
 
