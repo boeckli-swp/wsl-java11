@@ -28,6 +28,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
         
     - name: Set Version
       id: set_version
