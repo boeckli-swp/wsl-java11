@@ -29,6 +29,7 @@ jobs:
           command: |
             echo "dumdidumxx"
             pwd
+            ls -la
             echo "hallihallo"
             bash ./.circlci/workflows/scripts/set_mvn_version.sh    
       
