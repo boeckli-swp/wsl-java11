@@ -20,6 +20,16 @@ jobs:
       - checkout
       # Use mvn clean and package as the standard maven build phase
       - run:
+          name: test1
+          command: |
+            VAR1 = "blue"
+            echo $VAR1
+            echo "### test1: VAR 1 IS $$VAR1"
+      - run:
+          name: test2
+          command: |
+            echo "### test2: VAR 1 IS $$VAR1"   
+      - run:
           name: Build
           command: mvn -B -DskipTests clean package
       # Then run your tests!
