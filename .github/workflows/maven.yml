@@ -47,14 +47,14 @@ jobs:
       run: mvn -B install -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
       
     - name: Analyze with SonarCloud
-      run: mvn -B verify sonar:sonar \
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
         -Dsonar.projectKey=boeckli-swp_wsl-java11 \
         -Dsonar.organization=boeckli-swp \
-        -Dsonar.host.url=https://sonarcloud.io \
         -Dsonar.login=$SONAR_TOKEN
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
     - name: Maven Deploy
       run: mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
