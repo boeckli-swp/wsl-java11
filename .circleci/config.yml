@@ -32,7 +32,7 @@ jobs:
       - run:
           name: test1
           command: |
-            VAR2="blue"
+            VAR1="red"
             echo "### test1: VAR 2 IS $VAR2"
             echo "### test1: VAR 1 IS $VAR1"  
       - run:
