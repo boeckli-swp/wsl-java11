@@ -9,10 +9,10 @@ on:
         description: "Default version to use when preparing a release."
         required: true
         default: "X.Y.Z"
-#      developmentVersion:
-#        description: "Default version to use for new local working copy."
-#        required: true
-#        default: "X.Y.Z-SNAPSHOT"
+      developmentVersion:
+        description: "Default version to use for new local working copy."
+        required: true
+        default: "X.Y.Z-SNAPSHOT"
 
 jobs:
   build:
@@ -34,8 +34,7 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Maven Release
-        #run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
-        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -Drevision=${{ github.event.inputs.releaseVersion }}
+        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
