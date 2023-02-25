@@ -37,12 +37,20 @@ jobs:
         # run script
         "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
     - name: get_version
-      run: echo "### The Version is ${{ steps.set_version.outputs.MVN_VERSION }}"      
-    - name: Set color
-      id: random-color-generator
-      run: echo "### SELECTED_COLOR=green" >> $GITHUB_OUTPUT
-    - name: Get color
-      run: echo "### The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"  
+      run: echo "### The Version is ${{ steps.set_version.outputs.MVN_VERSION }}"    
+      
+    - name: set hello
+      id: step1
+      run: echo "test=hello" >> "$GITHUB_OUTPUT"
+    - name: set world 
+      id: step2
+      run: echo "test=world" >> "$GITHUB_OUTPUT"  
+    - name: Get hello world
+      env:
+        OUTPUT1: ${{needs.job1.outputs.output1}}
+        OUTPUT2: ${{needs.job1.outputs.output2}}
+      run: echo "### The selected color is ${{ steps.step1.outputs.test }}"  
+      
     - name: Build with Maven
       run: mvn -B install
 
