@@ -42,15 +42,24 @@ jobs:
             MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
             echo "export ORIGINAL_MVN_VERSION=${MVN_VERSION}" >> $BASH_ENV
             
-            echo "### TODO1 Current version is: $MVN_VERSION"
-            echo "### TODO1 Current version is: ${ORIGINAL_MVN_VERSION}"
-            echo "### TODO1 Current version is: $VLADIMIR"
-            echo ${MY_ENV_VAR}
-            echo ${VLADIMIR}
-            echo ${MY_ENV_VAR2}
-            echo ${MY_ENV_VAR3}
-            echo ${MY_ENV_VAR4}
-          
+            echo "### Current version is: $ORIGINAL_MVN_VERSION"
+            
+            suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
+            echo "### Suffix is: $suffix"
+            
+            prefix=$(echo $MVN_VERSION | cut -d \- -f 1)
+            echo "### Prefix is: $prefix"
+            
+            # build new version
+            if [[ "$branch" != "master" ]]
+            then
+              NEW_MAVEN_VERSION=${branch}_$prefix-$suffix
+            else
+              NEW_MAVEN_VERSION=$MVN_VERSION
+            fi
+            echo "export BRANCH_MVN_VERSION=${NEW_MAVEN_VERSION}" >> $BASH_ENV
+            echo "### Changed version in pom.xml files $BRANCH_MVN_VERSION"
+            
       - run:
           name: "Set Maven Versions"
           command: |
@@ -72,7 +81,7 @@ jobs:
       - run:
           name: Build
           command: |
-            mvn -B versions:set -DnewVersion="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
+            mvn -B versions:set -DnewVersion="${BRANCH_MVN_VERSION}"
             mvn -B install
 
 workflows:
