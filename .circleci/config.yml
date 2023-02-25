@@ -31,7 +31,7 @@ jobs:
             pwd
             ls -la
             echo "hallihallo"
-            bash ./.circlci/workflows/scripts/set_mvn_version.sh    
+            bash ./.circlci/scripts/set_mvn_version.sh    
       
       - run: 
           name: "What branch am I on?"
