@@ -25,9 +25,27 @@ jobs:
       - image: cimg/openjdk:11.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    
+    parameters:
+      VAR1:
+        type: string
+    
     steps:
       # Checkout the code as the first step.
       - checkout
+        
+      - run:
+        name: "Setup custom environment variables"
+        command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
+      
+      - run: 
+          name: "What branch am I on?"
+          command: echo ${CIRCLE_BRANCH}
+          
+      - run:
+          name: "What was my custom environment variable?"
+          command: echo ${MY_ENV_VAR}    
+          
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: test1
