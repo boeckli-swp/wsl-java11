@@ -24,11 +24,11 @@ jobs:
           command: |
             VAR1 = "blue"
             echo $VAR1
-            echo "### test1: VAR 1 IS $$VAR1"
+            echo "### test1: VAR 1 IS $VAR1"
       - run:
           name: test2
           command: |
-            echo "### test2: VAR 1 IS $$VAR1"   
+            echo "### test2: VAR 1 IS $VAR1"   
       - run:
           name: Build
           command: mvn -B -DskipTests clean package
