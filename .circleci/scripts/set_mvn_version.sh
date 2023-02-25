@@ -15,8 +15,9 @@ echo "### Branch is $branch"
 
 # get current version of the top level pom
 MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-#echo "export ORIGINAL_MVN_VERSION=${MVN_VERSION}" >> $BASH_ENV
-#echo "### Current version is: $ORIGINAL_MVN_VERSION"
+echo "export ORIGINAL_MVN_VERSION=${MVN_VERSION}" >> $BASH_ENV
+echo "export GUGUSELI=${MVN_VERSION}" >> $BASH_ENV
+echo "### Current version is: $ORIGINAL_MVN_VERSION"
 
 # extract version suffix
 suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
@@ -38,3 +39,4 @@ echo "export GUGUS=${NEW_MAVEN_VERSION}" >> $BASH_ENV
 echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
 echo "### Changed version in pom.xml files $BRANCH_MVN_VERSION"
 echo "### Changed version in pom.xml files $GUGUS"
+echo "### Changed version in pom.xml files $GUGUSELI"
