@@ -2,21 +2,11 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-commands:
-  set-versions:
-    parameters:
-      VAR1:
-        type: string
-    steps:
-      - run:
-          name: Set Variable
-          command: VAR1="blue"
-
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
-  build-and-test:
+  build:
     # These next lines define a Docker executor: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # Be sure to update the Docker image tag below to openjdk version of your application.
@@ -25,10 +15,6 @@ jobs:
       - image: cimg/openjdk:11.0
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
-    
-    parameters:
-      VAR1:
-        type: string
     
     steps:
       # Checkout the code as the first step.
@@ -46,32 +32,12 @@ jobs:
           name: "What was my custom environment variable?"
           command: echo ${MY_ENV_VAR}    
           
-      # Use mvn clean and package as the standard maven build phase
-      - run:
-          name: test1
-          command: |
-            VAR1="red"
-            echo "### test1: VAR 2 IS $VAR2"
-            echo "### test1: VAR 1 IS $VAR1"  
-            echo << parameters.VAR1 >>
-      - run:
-          name: test2
-          command: |
-            echo "### test2: VAR 2 IS $VAR2"
-            echo "### test2: VAR 1 IS $VAR1"   
-            echo << parameters.VAR1 >>
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
-      # Then run your tests!
-      - run:
-          name: Test
-          command: mvn test
+          command: mvn -B clean package
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build-and-test
+      - build
