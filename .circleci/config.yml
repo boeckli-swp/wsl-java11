@@ -27,12 +27,9 @@ jobs:
       - run:
           name: "Set Maven Versions"
           command: |
-            echo "dumdidumxx"
-            pwd
-            ls -la
-            echo "hallihallo"
+            echo "Calling set_mvn_version.sh"
             bash ./.circleci/scripts/set_mvn_version.sh
-      
+
       - run: 
           name: "What branch am I on?"
           command: echo ${CIRCLE_BRANCH}
@@ -42,8 +39,14 @@ jobs:
           command: echo ${MY_ENV_VAR}    
           
       - run:
+          name: "What was my custom environment variable?"
+          command: echo ${BRANCH_MVN_VERSION}    
+          
+      - run:
           name: Build
-          command: mvn -B clean package
+          command: |
+            mvn -B versions:set -DnewVersion="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
+            mvn -B install
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
