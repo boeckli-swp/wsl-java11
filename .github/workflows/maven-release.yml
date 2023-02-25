@@ -35,7 +35,7 @@ jobs:
 
       - name: Maven Release
         #run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
-        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }}
+        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -Drevision=${{ github.event.inputs.releaseVersion }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
