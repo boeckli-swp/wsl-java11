@@ -25,6 +25,11 @@ jobs:
           command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
           
       - run:
+          name: "Set Bash Env"
+          command: |
+            echo 'export MY_ENV_VAR2="FOO"' >> "$BASH_ENV"    
+          
+      - run:
           name: "TRY"
           command: |
             branch=${CIRCLE_BRANCH//[\/]/_}
@@ -39,6 +44,7 @@ jobs:
             echo "### TODO1 Current version is: $VLADIMIR"
             echo ${MY_ENV_VAR}
             echo ${VLADIMIR}
+            echo ${MY_ENV_VAR2}
           
       - run:
           name: "Set Maven Versions"
