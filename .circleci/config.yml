@@ -37,6 +37,8 @@ jobs:
             echo "### TODO1 Current version is: $MVN_VERSION"
             echo "### TODO1 Current version is: ${ORIGINAL_MVN_VERSION}"
             echo "### TODO1 Current version is: $VLADIMIR"
+            echo ${MY_ENV_VAR}
+            echo ${VLADIMIR}
           
       - run:
           name: "Set Maven Versions"
