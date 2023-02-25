@@ -21,8 +21,12 @@ jobs:
       - checkout
         
       - run:
-          name: "Setup custom environment variables"
+          name: "Set Bash Env"
           command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
+          
+      - run:
+          name: "Set Maven Versions"
+          command: bash ./.circlci/workflows/scripts/set_mvn_version.sh    
       
       - run: 
           name: "What branch am I on?"
