@@ -27,4 +27,4 @@ version=$branch-$suffix
 mvn versions:set -DgenerateBackupPoms=false -DnewVersion=$version
 #mvn -Drevision=$branch-SNAPSHOT
 
-echo "Changed version in pom.xml files to $version"
+echo "### Changed version in pom.xml files to $version"
