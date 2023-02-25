@@ -47,7 +47,10 @@ jobs:
       run: mvn -B install -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
       
     - name: Analyze with SonarCloud
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+        -Dsonar.projectKey=wsl-java11 \
+        -Dsonar.organization=org.example \
+        -Dsonar.login=$SONAR_TOKEN
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
