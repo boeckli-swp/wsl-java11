@@ -2,6 +2,16 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+commands:
+  set-versions:
+    parameters:
+      VAR1:
+        type: string
+    steps:
+      - run:
+          name: Set Variable
+          command: VAR1="blue"
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -22,12 +32,13 @@ jobs:
       - run:
           name: test1
           command: |
-            VAR1="blue"
-            echo $VAR1
-            echo "### test1: VAR 1 IS $VAR1"
+            VAR2="blue"
+            echo "### test1: VAR 2 IS $VAR2"
+            echo "### test1: VAR 1 IS $VAR1"  
       - run:
           name: test2
           command: |
+            echo "### test2: VAR 2 IS $VAR2"
             echo "### test2: VAR 1 IS $VAR1"   
       - run:
           name: Build
