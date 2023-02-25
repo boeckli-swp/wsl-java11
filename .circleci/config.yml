@@ -27,7 +27,8 @@ jobs:
       - run:
           name: "Set Bash Env"
           command: |
-            echo 'export MY_ENV_VAR2="FOO"' >> "$BASH_ENV"    
+            echo 'export MY_ENV_VAR2="FOO"' >> "$BASH_ENV"   
+            echo 'export MY_ENV_VAR3="gugus"' >> "$BASH_ENV"  
           
       - run:
           name: "TRY"
@@ -45,6 +46,7 @@ jobs:
             echo ${MY_ENV_VAR}
             echo ${VLADIMIR}
             echo ${MY_ENV_VAR2}
+            echo ${MY_ENV_VAR3}
           
       - run:
           name: "Set Maven Versions"
