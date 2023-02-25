@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: Log the Input
         run: |
-          echo "### New Tag created: $Tag"
-          echo "### New Snapshot created: Snapshot"
+          echo "### Creating new Tag: $Tag"
+          echo "### Creating new Snapshot: $Snapshot"
         env:
           Tag: ${{ inputs.releaseVersion }}
           Snapshot: ${{ inputs.developmentVersion }}
