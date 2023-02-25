@@ -28,7 +28,7 @@ jobs:
           name: "Set Maven Versions"
           command: |
             echo "dumdidum"
-            bash pwd
+            pwd
             echo "hallihallo"
             bash ./.circlci/workflows/scripts/set_mvn_version.sh    
       
