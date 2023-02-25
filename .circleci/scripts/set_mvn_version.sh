@@ -32,6 +32,6 @@ then
 else
     NEW_MAVEN_VERSION=$MVN_VERSION
 fi
-echo 'export BRANCH_MVN_VERSION="$NEW_MAVEN_VERSION"' >> "$BASH_ENV"
+echo "export BRANCH_MVN_VERSION=${NEW_MAVEN_VERSION}" >> $BASH_ENV
 
-echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
+echo "### Changed version in pom.xml files $BRANCH_MVN_VERSION"
