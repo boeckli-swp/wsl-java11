@@ -15,6 +15,16 @@ on:
         default: "X.Y.Z-SNAPSHOT"
 
 jobs:
+  log-the-inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "### New Tag created: $Tag"
+          echo "### New Snapshot created: Snapshot"
+        env:
+          Tag: ${{ inputs.releaseVersion }}
+          Snapshot: ${{ inputs.developmentVersion }}
+  
   build:
     runs-on: ubuntu-latest
 
