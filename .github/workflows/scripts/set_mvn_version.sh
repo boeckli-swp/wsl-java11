@@ -22,7 +22,7 @@ echo "### Suffix is: $suffix"
 
 # build new version
 NEW_MAVEN_VERSION=$branch-$suffix
-echo "${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
+echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
 echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
 
