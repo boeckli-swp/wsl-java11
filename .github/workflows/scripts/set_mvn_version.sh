@@ -24,7 +24,7 @@ prefix=$(echo $MVN_VERSION | cut -d \- -f 1)
 echo "### Prefix is: $prefix"
 
 # build new version
-NEW_MAVEN_VERSION=$branch-$suffix
+NEW_MAVEN_VERSION=${branch}_$prefix-$suffix
 echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
 echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
