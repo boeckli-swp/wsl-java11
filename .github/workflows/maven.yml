@@ -28,16 +28,16 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+        
     - name: Set Version
       id: set_version
       run: |
         # make file runnable, might not be necessary
         chmod +x "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
-
         # run script
         "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
     - name: get_version
-      run: echo "### The Version is ${{ steps.set_version.outputs.MVN_VERSION }}"    
+      run: echo "### The Version is ${{ steps.set_version.outputs.GUGUS }}"    
       
     - name: set hello
       id: step1
