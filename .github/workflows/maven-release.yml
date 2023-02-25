@@ -3,17 +3,16 @@ name: Maven Release
 # https://stackoverflow.com/questions/58254332/maven-release-from-github-actions
 on:
   workflow_dispatch:
-    
+    branches: [ "master" ]
     inputs:
       releaseVersion:
         description: "Default version to use when preparing a release."
         required: true
         default: "X.Y.Z"
-      developmentVersion:
-        description: "Default version to use for new local working copy."
-        required: true
-        default: "X.Y.Z-SNAPSHOT"
-
+#      developmentVersion:
+#        description: "Default version to use for new local working copy."
+#        required: true
+#        default: "X.Y.Z-SNAPSHOT"
 
 jobs:
   build:
@@ -28,10 +27,6 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          #settings-path: ${{ github.workspace }} # location for the settings.xml file
-          
-      #- name: View settings.xml
-      #  run: cat /home/runner/.m2/settings.xml
       
       - name: Configure Git User
         run: |
@@ -39,8 +34,8 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Maven Release
-        #run: mvn release:prepare release:perform -B -s .maven_settings.xml -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
-        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
+        #run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
+        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
