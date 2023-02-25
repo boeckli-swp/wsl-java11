@@ -13,7 +13,7 @@ echo "### Branch is $branch"
 
 # get current version of the top level pom
 MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-echo "GUGUS=$MVN_VERSION" >> "$GITHUB_OUTPUT"
+echo "ORIGINAL_MVN_VERSION=$MVN_VERSION" >> "$GITHUB_OUTPUT"
 echo "### Current version is: $MVN_VERSION"
 
 # extract version suffix
@@ -21,7 +21,8 @@ suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
 echo "### Suffix is: $suffix"
 
 # build new version
-BRANCH_MAVEN_VERSION=$branch-$suffix
+NEW_MAVEN_VERSION=$branch-$suffix
+echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
 # run maven versions plugin to set new version
 mvn versions:set -DgenerateBackupPoms=false -DnewVersion=BRANCH_MAVEN_VERSION

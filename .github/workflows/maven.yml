@@ -36,8 +36,10 @@ jobs:
         chmod +x "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
         # run script
         "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
-    - name: get_version
-      run: echo "### The Version is ${{ steps.set_version.outputs.GUGUS }}"    
+    - name: get_original_version
+      run: echo "### The Version is ${{ steps.set_version.outputs.ORIGINAL_MVN_VERSION }}"    
+    - name: get_branch_version
+      run: echo "### The Branch Version is ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"  
       
     - name: set hello
       id: step1
@@ -52,7 +54,7 @@ jobs:
       run: echo "### Say Hello ${{ steps.step1.outputs.test }} ${{ steps.step2.outputs.test }}"  
       
     - name: Build with Maven
-      run: mvn -B install
+      run: mvn -B install -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
