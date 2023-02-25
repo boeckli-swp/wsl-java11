@@ -30,8 +30,10 @@ name: Sonarqube
 
 on:
   workflow_dispatch:
+    branches: [ "master", "feature/**" ]
   workflow_call:
     workflows: ["Maven Build"]
+    branches: [ "master", "feature/**" ]
     types:
       - completed  
 
