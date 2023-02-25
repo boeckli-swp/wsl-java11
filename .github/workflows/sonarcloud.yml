@@ -31,11 +31,8 @@ name: Sonarqube
 on:
   workflow_dispatch:
     branches: [ "master", "feature/**" ]
-  workflow_call:
-    workflows: ["Maven Build"]
+  push:
     branches: [ "master", "feature/**" ]
-    types:
-      - completed  
 
 permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results

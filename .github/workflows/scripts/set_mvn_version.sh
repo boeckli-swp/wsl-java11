@@ -26,14 +26,12 @@ prefix=$(echo $MVN_VERSION | cut -d \- -f 1)
 echo "### Prefix is: $prefix"
 
 # build new version
-NEW_MAVEN_VERSION=${branch}_$prefix-$suffix
+if [[ "$branch" != "master" ]] 
+then
+    NEW_MAVEN_VERSION=${branch}_$prefix-$suffix
+else
+    NEW_MAVEN_VERSION=$MVN_VERSION
+fi
 echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
 echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
-
-# run maven versions plugin to set new version
-#mvn -Drevision=$branch-SNAPSHOT
-
-
-
-
