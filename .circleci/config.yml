@@ -21,8 +21,8 @@ jobs:
       - checkout
         
       - run:
-        name: "Setup custom environment variables"
-        command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
+          name: "Setup custom environment variables"
+          command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
       
       - run: 
           name: "What branch am I on?"
