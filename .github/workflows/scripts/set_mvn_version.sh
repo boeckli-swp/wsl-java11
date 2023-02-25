@@ -20,6 +20,9 @@ echo "### Current version is: $MVN_VERSION"
 suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
 echo "### Suffix is: $suffix"
 
+prefix=$(echo $MVN_VERSION | cut -d \- -f 1)
+echo "### Prefix is: $prefix"
+
 # build new version
 NEW_MAVEN_VERSION=$branch-$suffix
 echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
