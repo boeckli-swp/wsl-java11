@@ -44,6 +44,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B install -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    #- name: Update dependency graph
-    #  uses: advanced-security/maven-dependency-submission-action@v2.0.1
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml -Drevision="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
