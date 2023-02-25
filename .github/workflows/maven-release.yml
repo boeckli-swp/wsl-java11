@@ -17,8 +17,10 @@ on:
 jobs:
   log-the-inputs:
     runs-on: ubuntu-latest
+    
     steps:
-      - run: |
+      - name: Log the Input
+        run: |
           echo "### New Tag created: $Tag"
           echo "### New Snapshot created: Snapshot"
         env:
