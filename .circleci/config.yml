@@ -30,7 +30,7 @@ jobs:
             echo 'export MY_ENV_VAR2="FOO"' >> "$BASH_ENV"   
             echo 'export MY_ENV_VAR3="gugus"' >> "$BASH_ENV"  
             MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-            echo 'export MY_ENV_VAR4="MVN_VERSION"' >> "$BASH_ENV"  
+            echo 'export MY_ENV_VAR4="${MVN_VERSION}"' >> "$BASH_ENV"  
             
           
       - run:
