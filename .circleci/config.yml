@@ -40,8 +40,7 @@ jobs:
             echo "### Normalized Branch Name is $branch"
             
             MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-            echo 'export ORIGINAL_MVN_VERSION="$MVN_VERSION"' >> "$BASH_ENV"
-            echo 'export VLADIMIR="FOO"' >> "$BASH_ENV"
+            echo "export ORIGINAL_MVN_VERSION=${MVN_VERSION}" >> $BASH_ENV
             
             echo "### TODO1 Current version is: $MVN_VERSION"
             echo "### TODO1 Current version is: ${ORIGINAL_MVN_VERSION}"
