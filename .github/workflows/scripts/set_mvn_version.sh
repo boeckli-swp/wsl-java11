@@ -22,12 +22,13 @@ echo "### Suffix is: $suffix"
 
 # build new version
 NEW_MAVEN_VERSION=$branch-$suffix
-echo "${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
+echo "${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
+
+echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
 
 # run maven versions plugin to set new version
-mvn versions:set -DgenerateBackupPoms=false -DnewVersion=BRANCH_MAVEN_VERSION
 #mvn -Drevision=$branch-SNAPSHOT
 
-echo "### Changed version in pom.xml files to $NEW_MAVEN_VERSION"
+
 
 
