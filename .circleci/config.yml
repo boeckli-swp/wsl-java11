@@ -29,7 +29,7 @@ jobs:
             MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
             echo "export ORIGINAL_MVN_VERSION=${MVN_VERSION}" >> $BASH_ENV
             
-            echo "### Current version is: $ORIGINAL_MVN_VERSION"
+            echo "### Current version is: ${ORIGINAL_MVN_VERSION}"
             
             suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
             echo "### Suffix is: $suffix"
@@ -46,7 +46,7 @@ jobs:
             fi
             echo "export BRANCH_MVN_VERSION=${NEW_MAVEN_VERSION}" >> $BASH_ENV
             
-            echo "### Branch version is: $BRANCH_MVN_VERSION"
+            echo "### Branch version is: ${BRANCH_MVN_VERSION}"
             
       - run: 
           name: "Show Build Info"
@@ -60,7 +60,6 @@ jobs:
           command: |
             mvn -B versions:set -DnewVersion="${BRANCH_MVN_VERSION}"
             mvn -B install
-            mvn -B deploy
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
