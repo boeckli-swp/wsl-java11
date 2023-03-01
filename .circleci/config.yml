@@ -21,20 +21,7 @@ jobs:
       - checkout
         
       - run:
-          name: "Set Bash Env"
-          command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV"
-          
-      - run:
-          name: "Set Bash Env"
-          command: |
-            echo 'export MY_ENV_VAR2="FOO"' >> "$BASH_ENV"   
-            echo 'export MY_ENV_VAR3="gugus"' >> "$BASH_ENV"  
-            MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-            echo "export MY_ENV_VAR4=${MVN_VERSION}" >> $BASH_ENV
-            
-          
-      - run:
-          name: "TRY"
+          name: "Initialize Build"
           command: |
             branch=${CIRCLE_BRANCH//[\/]/_}
             echo "### Normalized Branch Name is $branch"
@@ -60,26 +47,12 @@ jobs:
             echo "export BRANCH_MVN_VERSION=${NEW_MAVEN_VERSION}" >> $BASH_ENV
             echo "### Set Version for f $BRANCH_MVN_VERSION"
             
-      #- run:
-      #    name: "Set Maven Versions"
-      #    command: |
-      #      echo "Calling set_mvn_version.sh"
-      #      bash ./.circleci/scripts/set_mvn_version.sh
-
       - run: 
           name: "Show Build Info"
           command: |
             echo "Creating Build for branch ${CIRCLE_BRANCH}"
             echo "Original Maven Version: ${ORIGINAL_MVN_VERSION}"
             echo "Creating Build with Maven Version: ${BRANCH_MVN_VERSION}"
-          
-      - run:
-          name: "What was my custom environment variable?"
-          command: echo ${MY_ENV_VAR}    
-          
-      - run:
-          name: "What was my custom environment variable?"
-          command: echo ${BRANCH_MVN_VERSION}    
           
       - run:
           name: Build
