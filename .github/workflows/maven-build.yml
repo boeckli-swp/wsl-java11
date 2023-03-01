@@ -47,12 +47,6 @@ jobs:
         # run set version script
         "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
     
-    - name: Run Maven Install
-      run: |
-        mvn -B versions:set -DnewVersion="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
-        mvn -B install
-        docker version
-    
     - name: Run Maven Deploy
       run: |
         mvn -B versions:set -DnewVersion="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
