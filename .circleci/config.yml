@@ -61,7 +61,7 @@ jobs:
 #           mvn -B deploy
 
 workflows:
-  sample: 
+  maven: 
     jobs:
       - build
-      - maven/deploy
+      - maven/test
