@@ -49,6 +49,7 @@ jobs:
     
     - name: Run Maven Deploy
       run: |
+        echo "### Build startet for branch ${{ steps.set_version.outputs.GIT_BRANCH }} with version ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
         mvn -B versions:set -DnewVersion="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
         mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml  
       env:
