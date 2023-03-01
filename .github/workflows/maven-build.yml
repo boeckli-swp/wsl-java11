@@ -47,6 +47,7 @@ jobs:
       run: |
         mvn -B versions:set -DnewVersion="${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
         mvn -B install
+        docker version
     
     - name: Run Maven Deploy
       run: |
