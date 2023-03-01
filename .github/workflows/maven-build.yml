@@ -19,9 +19,14 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
     permissions:
       contents: read
       packages: write
+      
+    outputs:
+      BRANCH_MVN_VERSION: ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}
+      GIT_BRANCH: ${{ steps.set_version.outputs.GIT_BRANCH }}  
 
     steps:
     - uses: actions/checkout@v3
@@ -63,9 +68,12 @@ jobs:
     
     steps:
     
-    - name: Deploy  
+    - name: Deploy
+      env:
+        BRANCH_MVN_VERSION: ${{needs.build.outputs.BRANCH_MVN_VERSION}}
+        GIT_BRANCH: ${{needs.build.outputs.GIT_BRANCH}}
       run: |
-        echo "Deploying Branch ${{ steps.set_version.outputs.GIT_BRANCH }} with version ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
+        echo "Deploying Branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         
   quality-check:
     
