@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-  github-maven-deploy: github-maven-deploy/github-maven-deploy@1.2.0
+  maven: circleci/maven@x.y
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
@@ -64,4 +64,4 @@ workflows:
   sample: 
     jobs:
       - build
-      - github-maven-deploy
+      - maven/deploy
