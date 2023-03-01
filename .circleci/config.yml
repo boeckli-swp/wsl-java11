@@ -58,17 +58,20 @@ jobs:
               NEW_MAVEN_VERSION=$MVN_VERSION
             fi
             echo "export BRANCH_MVN_VERSION=${NEW_MAVEN_VERSION}" >> $BASH_ENV
-            echo "### Changed version in pom.xml files $BRANCH_MVN_VERSION"
+            echo "### Set Version for f $BRANCH_MVN_VERSION"
             
-      - run:
-          name: "Set Maven Versions"
-          command: |
-            echo "Calling set_mvn_version.sh"
-            bash ./.circleci/scripts/set_mvn_version.sh
+      #- run:
+      #    name: "Set Maven Versions"
+      #    command: |
+      #      echo "Calling set_mvn_version.sh"
+      #      bash ./.circleci/scripts/set_mvn_version.sh
 
       - run: 
-          name: "What branch am I on?"
-          command: echo ${CIRCLE_BRANCH}
+          name: "Show Build Info"
+          command: |
+            echo "Creating Build for branch ${CIRCLE_BRANCH}"
+            echo "Original Maven Version: ${ORIGINAL_MVN_VERSION}"
+            echo "Creating Build with Maven Version: ${BRANCH_MVN_VERSION}"
           
       - run:
           name: "What was my custom environment variable?"
