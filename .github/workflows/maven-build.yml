@@ -65,8 +65,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
-        
-    - name: Run Snyk Vulnerability Check
+  
+  quality-check:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/maven-3-jdk-11@master
       continue-on-error: true # To make sure that SARIF upload gets called
       env:
@@ -77,4 +85,4 @@ jobs:
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
-        sarif_file: snyk.sarif    
+        sarif_file: snyk.sarif
