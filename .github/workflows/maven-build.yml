@@ -60,7 +60,9 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}  
       
     - name: Run Sonar
-      run: mvn sonar:sonar -Pcoverage
+      run: |
+        mvn -B verify
+        mvn sonar:sonar -Pcoverage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
