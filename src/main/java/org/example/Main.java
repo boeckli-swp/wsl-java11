@@ -18,12 +18,17 @@ public class Main {
         System.out.println("Java Home is: " + SystemUtils.getJavaHome());
 
         logger.info("hallo echo: " + password);
-        
+
+
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createAndShowGUI();
             }
         });
+    }
+    protected static String greet(String firstName) {
+        return "Hallo " + firstName;
     }
 
     /**
@@ -32,6 +37,8 @@ public class Main {
      * event-dispatching thread.
      */
     private static void createAndShowGUI() {
+        logger.info(greet("Nobody"));
+        
         //Create and set up the window.
         JFrame frame = new JFrame("HelloWorldSwing");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
