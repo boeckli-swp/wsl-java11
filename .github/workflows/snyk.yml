@@ -1,4 +1,4 @@
-name: vulnerabilities-scanner
+name: Snyk Vulnerabilities Scanner
 on:
   workflow_dispatch:
     
