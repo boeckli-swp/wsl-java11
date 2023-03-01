@@ -54,6 +54,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}  
         
+  deploy:
+    
+    needs: [build]
+    
+    steps:
+    
+    - name: Deploy  
+      run: |
+        echo "Deploying Branch ${{ steps.set_version.outputs.GIT_BRANCH }} with version ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}"
+        
   quality-check:
     
     needs: [build]

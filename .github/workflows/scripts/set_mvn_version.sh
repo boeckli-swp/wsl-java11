@@ -9,6 +9,7 @@ fi
 
 # get current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
+echo "GIT_BRANCH=$branch" >> "$GITHUB_OUTPUT"
 echo "### Branch is $branch"
 branch=${branch//[\/]/_}
 echo "### Branch is $branch"
