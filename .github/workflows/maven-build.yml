@@ -61,7 +61,7 @@ jobs:
       
     - name: Run Sonar
       run: |
-        mvn -B verify
+        mvn -B verify -Pcoverage
         mvn sonar:sonar -Pcoverage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
