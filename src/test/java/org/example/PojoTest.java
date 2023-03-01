@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MainTest {
+class PojoTest {
 
     @Test
     void greet() {
-        String actual = Main.greet("Fridolin");
-        assertEquals("Hallo Fridolin", actual);
+        Pojo actual = new Pojo();
+        assertEquals("Hallo Fridolin", actual.greet("Fridolin"));
     }
 }

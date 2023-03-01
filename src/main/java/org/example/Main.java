@@ -27,9 +27,6 @@ public class Main {
             }
         });
     }
-    protected static String greet(String firstName) {
-        return "Hallo " + firstName;
-    }
 
     /**
      * Create the GUI and show it.  For thread safety,
@@ -37,7 +34,7 @@ public class Main {
      * event-dispatching thread.
      */
     private static void createAndShowGUI() {
-        logger.info(greet("Nobody"));
+        logger.info(new Pojo().greet("Nobody"));
         
         //Create and set up the window.
         JFrame frame = new JFrame("HelloWorldSwing");
