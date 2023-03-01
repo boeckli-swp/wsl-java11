@@ -30,9 +30,9 @@ name: Sonarqube
 
 on:
   workflow_dispatch:
-    branches: [ "master", "feature/**" ]
-  push:
-    branches: [ "master", "feature/**" ]
+  #  branches: [ "master", "feature/**" ]
+  #push:
+  #  branches: [ "master", "feature/**" ]
 
 permissions:
   pull-requests: read # allows SonarCloud to decorate PRs with analysis results

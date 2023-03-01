@@ -28,7 +28,11 @@
         
         <project.scm.id>github</project.scm.id>
         
+        <!-- https://docs.sonarcloud.io/advanced-setup/analysis-parameters/ -->
         <sonar.scm.provider>git</sonar.scm.provider>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.organization>boeckli-swp</sonar.organization> 
+        <sonar.projectKey>boeckli-swp_wsl-java11</sonar.projectKey> <!-- default is: <groupId>:<artifactId> -->
     </properties>
     
     <profiles>
