@@ -29,12 +29,13 @@ jobs:
     # This action installs the given version of the JDK into the PATH, and also sets up a Maven settings.xml for publishing the package to GitHub Packages. 
     # The generated settings.xml defines authentication for a server with an id of github, using the GITHUB_ACTOR environment variable as the username and 
     # the GITHUB_TOKEN environment variable as the password. The GITHUB_TOKEN environment variable is assigned the value of the special GITHUB_TOKEN secret.
+    # See: https://github.com/actions/setup-java
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
-        cache: maven
+        cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         
@@ -59,8 +60,21 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}  
       
-    - name: Run Sonar
+    - name: Run Sonar Code Scan
       run: mvn clean verify sonar:sonar -Pcoverage
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+        
+    - name: Run Snyk Vulnerability Check
+      uses: snyk/actions/maven-3-jdk-11@master
+      continue-on-error: true # To make sure that SARIF upload gets called
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --sarif-file-output=snyk.sarif
+
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: snyk.sarif    

@@ -1,8 +1,7 @@
 name: vulnerabilities-scanner
 on:
   workflow_dispatch:
-  push:
-    branches: [ "master", "feature/**" ]
+    
 jobs:
   security:
     runs-on: ubuntu-latest
