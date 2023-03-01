@@ -2,8 +2,6 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
   build:
@@ -13,8 +11,6 @@ jobs:
     # A list of available CircleCI Docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/openjdk
     docker:
       - image: cimg/openjdk:11.0
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     
     steps:
       # Checkout the code as the first step.
@@ -58,10 +54,10 @@ jobs:
           command: |
             mvn -B versions:set -DnewVersion="${BRANCH_MVN_VERSION}"
             mvn -B install
-            mvn -B deploy
+# TODO: setup authorization            
+#           mvn -B deploy
 
 workflows:
-  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  sample: 
     jobs:
       - build
