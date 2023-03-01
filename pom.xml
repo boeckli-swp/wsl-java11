@@ -27,6 +27,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <project.scm.id>github</project.scm.id>
+        
+        <sonar.scm.provider>git</sonar.scm.provider>
     </properties>
     
     <profiles>
