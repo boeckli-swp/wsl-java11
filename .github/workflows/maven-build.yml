@@ -59,12 +59,6 @@ jobs:
         mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml  
       env:
         GITHUB_TOKEN: ${{ github.token }}  
-      
-    - name: Run Sonar Code Scan
-      run: mvn clean verify sonar:sonar -Pcoverage
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
   
   quality-check:
     
@@ -73,7 +67,13 @@ jobs:
     steps:
 
     - uses: actions/checkout@master
-
+      
+    - name: Run Sonar Code Scan
+      run: mvn clean verify sonar:sonar -Pcoverage
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+    
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/maven-3-jdk-11@master
       continue-on-error: true # To make sure that SARIF upload gets called
