@@ -45,7 +45,8 @@ jobs:
               NEW_MAVEN_VERSION=$MVN_VERSION
             fi
             echo "export BRANCH_MVN_VERSION=${NEW_MAVEN_VERSION}" >> $BASH_ENV
-            echo "### Set Version for f $BRANCH_MVN_VERSION"
+            
+            echo "### Branch version is: $BRANCH_MVN_VERSION"
             
       - run: 
           name: "Show Build Info"
@@ -59,6 +60,7 @@ jobs:
           command: |
             mvn -B versions:set -DnewVersion="${BRANCH_MVN_VERSION}"
             mvn -B install
+            mvn -B deploy
 
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
