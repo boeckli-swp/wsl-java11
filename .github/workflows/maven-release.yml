@@ -62,7 +62,7 @@ jobs:
           curl 'https://maven.pkg.github.com/boeckli-swp/wsl-java11/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}.jar' \
             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             -L \
-            -O target/deployable.jar
+            -o target/deployable.jar
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}  
