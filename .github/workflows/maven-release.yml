@@ -43,7 +43,9 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Maven Release
-        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
+        run: | 
+          mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
+          echo "Released Version: ${{ github.event.inputs.developmentVersion }}" >> $GITHUB_STEP_SUMMARY
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
