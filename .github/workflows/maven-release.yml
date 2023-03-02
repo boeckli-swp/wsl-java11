@@ -18,9 +18,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     
-    #permissions:
-    #  contents: read
-    #  packages: write
+    permissions:
+      contents: write
+      packages: write
 
     steps:
       - name: Log the Input
@@ -60,6 +60,9 @@ jobs:
         run: |
           ls -la
           cat pom.xml
+          cat pom.xml.releaseBackup
+          cat release.properties
+          cat /home/runner/.m2/repository/org/example/wsl-java11/2.0.5/wsl-java11-2.0.5.pom
           mvn deploy:deploy-file -Dfile=pom.xml -Durl=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=pom  
         env:
           GITHUB_ACTOR: ${{ github.actor }}
