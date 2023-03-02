@@ -59,7 +59,10 @@ jobs:
       - name: Get Deployable
         run: |
           echo "### Retrieving deployable jar ###"
-          mvn dependency:get -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=jar -Dtransitive=false -DremoteRepositories=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -Ddest=target/deployable.jar
+          curl 'https://maven.pkg.github.com/boeckli-swp/wsl-java11/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}.jar' \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -L \
+            -O target/deployable.jar
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}  
