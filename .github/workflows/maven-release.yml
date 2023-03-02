@@ -56,14 +56,10 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
           
-      - name: Upload Pom
+      - name: Get Deployable
         run: |
-          pwd
-          echo "### debugging start ###"
-          ls -la /home/runner/.m2/repository/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}
-          cat /home/runner/.m2/repository/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}.pom
-          echo "### debugging end ###"
-          mvn deploy:deploy-file -Dfile=pom.xml -Durl=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=pom  
+          echo "### Retrieving deployable jar ###"
+          mvn dependency:get -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=jar -DremoteRepositories=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -Ddest=target/deployable.jar
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}  
