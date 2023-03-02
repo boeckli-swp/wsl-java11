@@ -43,7 +43,11 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Maven Release
-        run: mvn -B -e release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
+        continue-on-error: true # TODO: currently release is failing when uploading released pom
+        run: |
+          mvn -version
+          echo "### Release started. Released Version ${{ github.event.inputs.releaseVersion }}. New Snapshot is: ${{ github.event.inputs.developmentVersion }}"
+          mvn -B -e release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}

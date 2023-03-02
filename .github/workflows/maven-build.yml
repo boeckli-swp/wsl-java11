@@ -86,6 +86,7 @@ jobs:
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
       run: |
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
+        mvn -version
         mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION"
         mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml  
         
