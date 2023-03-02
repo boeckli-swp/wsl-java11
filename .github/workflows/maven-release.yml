@@ -17,6 +17,10 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Log the Input
