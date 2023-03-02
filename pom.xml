@@ -4,7 +4,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>wsl-java11</artifactId>
-    <version>1.6.8-SNAPSHOT</version>
+    <version>1.7.1-SNAPSHOT</version>
 
     <scm>
         <connection>scm:git:https://github.com/boeckli-swp/${project.artifactId}.git</connection>
