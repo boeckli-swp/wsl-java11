@@ -59,8 +59,10 @@ jobs:
       - name: Upload Pom
         run: |
           pwd
-          echo "### debugging ###"
+          echo "### debugging start ###"
           ls -la /home/runner/.m2/repository/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}
+          cat /home/runner/.m2/repository/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}.pom
+          echo "### debugging end ###"
           mvn deploy:deploy-file -Dfile=pom.xml -Durl=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=pom  
         env:
           GITHUB_ACTOR: ${{ github.actor }}
