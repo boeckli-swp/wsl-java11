@@ -58,6 +58,7 @@ jobs:
           
       - name: Upload Pom
         run: |
+          pwd
           ls -la /home/runner/.m2/repository/org/example/wsl-java11
           mvn deploy:deploy-file -Dfile=pom.xml -Durl=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=pom  
         env:
