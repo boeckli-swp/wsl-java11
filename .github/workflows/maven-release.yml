@@ -15,7 +15,7 @@ on:
         default: "X.Y.Z-SNAPSHOT"
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -43,9 +43,7 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Maven Release
-        run: | 
-          mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
-          echo "Released Version: ${{ github.event.inputs.developmentVersion }}" >> $GITHUB_STEP_SUMMARY
+        run: mvn -B release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
