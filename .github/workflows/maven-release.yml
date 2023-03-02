@@ -51,7 +51,7 @@ jobs:
         run: |
           mvn -version
           echo "### Release started. Released Version ${{ github.event.inputs.releaseVersion }}. New Snapshot is: ${{ github.event.inputs.developmentVersion }}"
-          mvn -B -e release:prepare-with-pom release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
+          mvn -B -e release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
