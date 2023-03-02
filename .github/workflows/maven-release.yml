@@ -52,13 +52,13 @@ jobs:
           mvn -version
           echo "### Release started. Released Version ${{ github.event.inputs.releaseVersion }}. New Snapshot is: ${{ github.event.inputs.developmentVersion }}"
           mvn -B -e release:prepare release:perform -DreleaseVersion=${{ github.event.inputs.releaseVersion }} -DdevelopmentVersion=${{ github.event.inputs.developmentVersion }}
-          cat /home/runner/.m2/repository/org/example/wsl-java11/2.0.5/wsl-java11-2.0.5.pom
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
           
       - name: Upload Pom
         run: |
+          ls -la /home/runner/.m2/repository/org/example/wsl-java11
           mvn deploy:deploy-file -Dfile=pom.xml -Durl=https://maven.pkg.github.com/boeckli-swp/wsl-java11 -DgroupId=org.example -DartifactId=wsl-java11 -Dversion=${{ github.event.inputs.releaseVersion }} -Dpackaging=pom  
         env:
           GITHUB_ACTOR: ${{ github.actor }}
