@@ -4,13 +4,13 @@
 
     <groupId>org.example</groupId>
     <artifactId>wsl-java11</artifactId>
-    <version>2.0.10-SNAPSHOT</version>
+    <version>2.0.10</version>
 
     <scm>
         <connection>scm:git:https://github.com/boeckli-swp/${project.artifactId}.git</connection>
         <developerConnection>scm:git:https://github.com/boeckli-swp/${project.artifactId}.git</developerConnection>
         <url>https://github.com/boeckli-swp/${project.artifactId}.git</url>
-        <tag>HEAD</tag>
+        <tag>wsl-java11-2.0.10</tag>
     </scm>
 
     <distributionManagement>
