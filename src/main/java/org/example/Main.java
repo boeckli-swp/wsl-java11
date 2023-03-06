@@ -31,7 +31,7 @@ public class Main {
     /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
-     * event-dispatching thread.
+     * event-dispatching thread!
      */
     private static void createAndShowGUI() {
         logger.info(new Pojo().greet("Nobody"));
