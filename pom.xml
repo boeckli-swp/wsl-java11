@@ -86,7 +86,53 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>        
+        </profile>
+        <profile>
+            <id>artifactory</id>
+            <!--
+            <activation>
+                <property>
+                    <name>env.BUILD_ENV</name>
+                    <value>github-actions</value>
+                </property>
+            </activation>
+            -->
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <name>boeckli-virtual</name>
+                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <snapshots />
+                    <id>snapshots</id>
+                    <name>boeckli-virtual</name>
+                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>boeckli-virtual</name>
+                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <snapshots />
+                    <id>snapshots</id>
+                    <name>boeckli-virtual</name>
+                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
     </profiles>
     
     <dependencies>
@@ -172,8 +218,6 @@
                     </configuration>
                 </plugin>
 
-                
-                
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -249,6 +293,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M7</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
             </plugin>
         </plugins>
     </build>
