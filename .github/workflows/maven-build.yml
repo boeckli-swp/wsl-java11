@@ -77,7 +77,7 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
-        settings-path: $GITHUB_WORKSPACE/.m2 # location for the settings.xml file. Default is ~/.m2
+        settings-path: ${{ github.workspace }}/.m2 # location for the settings.xml file. Default is ~/.m2
         
     - name: Setup Maven settings.xml
       uses: whelk-io/maven-settings-xml-action@v21
