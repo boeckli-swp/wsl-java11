@@ -94,6 +94,9 @@ jobs:
         BRANCH_MVN_VERSION: ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
       run: |
+        echo "### [DEBUG] Start: Settings xml "
+        cat ~/.m2/settings.xml
+        echo "### [DEBUG] End: Settings xml "
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
         mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION"
