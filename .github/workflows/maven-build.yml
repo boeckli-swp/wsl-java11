@@ -83,10 +83,6 @@ jobs:
       uses: whelk-io/maven-settings-xml-action@v21
       with:
         servers: '[{ "id": "central", "username": "${env.ARTIFACTORY_USERNAME}", "password": "${env.ARTIFACTORY_TOKEN}" }]'  
-      run: |
-        echo "### [DEBUG] Start: Settings xml "
-        cat ~/.m2/settings.xml
-        echo "### [DEBUG] End: Settings xml "
         
     - name: Run Maven Deploy
       env:
