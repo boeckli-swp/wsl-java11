@@ -106,21 +106,22 @@ jobs:
         ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
 
       run: |
-        echo "### [DEBUG] Start: Settings xml "
-        echo "### [DEBUG X artifactory settings file]"
+        echo "### [DEBUG] artifactory settings file:"
         cat $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
-        echo "### [DEBUG X github settings file]"
+        echo "### [DEBUG] github settings file:"
         cat $GITHUB_WORKSPACE/.m2/github/settings.xml
-        echo "### [DEBUG] End"
-        echo "### [DEBUG2] Start: effective-settings" 
+        echo "### [DEBUG] effective-settings for artifactory" 
         mvn help:effective-settings -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
-        echo "### [DEBUG2] End"
-        echo "### [DEBUG3] Start: effective-pom"
+        echo "### [DEBUG] effective-settings for github" 
+        mvn help:effective-settings -s $GITHUB_WORKSPACE/.m2/github/settings.xml
+        echo "### [DEBUG] effective-pom for artifactory"
         mvn help:effective-pom -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
-        echo "### [DEBUG3] End"
+        echo "### [DEBUG] effective-pom for github"
+        mvn help:effective-pom -s $GITHUB_WORKSPACE/.m2/github/settings.xml
+        echo "### [DEBUG] Maven version"
+        mvn -version
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
-        mvn -version
         mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION" -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
         mvn -B deploy -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
         
