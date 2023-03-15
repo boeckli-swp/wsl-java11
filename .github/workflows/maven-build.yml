@@ -87,12 +87,12 @@ jobs:
             {
               "id": "central",
               "username": "${env.ARTIFACTORY_USERNAME}",
-              "password": "${env.ARTIFACTORY_TOKEN_REF}"
+              "password": "${env.ARTIFACTORY_TOKEN}"
             },
             {
               "id": "snapshots",
               "username": "${env.ARTIFACTORY_USERNAME}",
-              "password": "${env.ARTIFACTORY_TOKEN_REF}"
+              "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
         
