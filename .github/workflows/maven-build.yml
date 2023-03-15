@@ -93,7 +93,7 @@ jobs:
               "id": "snapshots",
               "username": "${env.ARTIFACTORY_USERNAME}",
               "password": "${env.ARTIFACTORY_TOKEN}"
-            },
+            }
           ]
         
     - name: Run Maven Deploy
