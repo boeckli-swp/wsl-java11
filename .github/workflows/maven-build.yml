@@ -77,7 +77,7 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
-        settings-path: ${{ github.workspace }}/.m2/github # location for the settings.xml file. Default is ~/.m2
+        settings-path: ${{ github.workspace }}/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
         
     - name: Setup Maven settings.xml
       uses: whelk-io/maven-settings-xml-action@v21
@@ -95,8 +95,7 @@ jobs:
               "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
-        #output_file: .m2/settings.xml # this is the default. by default it goes to ~/.m2/settings.xml  
-        output_file: ${{ github.workspace }}/.m2/artifactory
+        output_file: ${{ github.workspace }}/.m2/artifactory # by default it goes to ~/.m2/settings.xml
         
     - name: Run Maven Deploy
       env:
@@ -113,11 +112,9 @@ jobs:
         
         echo "### [DEBUG] Start: Settings xml "
         echo "### [DEBUG X artifactory settings file]"
-        cat ~/.m2/settings.xml
+        cat $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
         echo "### [DEBUG X github settings file]"
-        cat ~/.m2/github/settings.xml
-        echo "### [DEBUG X standard settings file]"
-        cat ~/.m2/settings.xml
+        cat $GITHUB_WORKSPACE/.m2/github/settings.xml
         echo "### [DEBUG] End"
         echo "### [DEBUG2] Start: effective-settings" 
         mvn help:effective-settings -s .m2/settings.xml -Partifactory
