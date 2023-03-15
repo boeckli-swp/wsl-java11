@@ -86,12 +86,12 @@ jobs:
           [
             {
               "id": "central",
-              "username": "${env.ARTIFACTORY_USERNAME_REF}",
+              "username": "${env.ARTIFACTORY_USERNAME}",
               "password": "${env.ARTIFACTORY_TOKEN_REF}"
             },
             {
               "id": "snapshots",
-              "username": "${env.ARTIFACTORY_USERNAME_REF}",
+              "username": "${env.ARTIFACTORY_USERNAME}",
               "password": "${env.ARTIFACTORY_TOKEN_REF}"
             }
           ]
@@ -101,8 +101,8 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
         BRANCH_MVN_VERSION: ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
-        ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
-        ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
+        ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+        ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
 
       run: |
         echo "### [DEBUG] Start: Settings xml "
