@@ -107,6 +107,11 @@ jobs:
 
       run: |
         echo "### [DEBUG] Start: Settings xml "
+        echo "### [DEBUG X artifactory settings file]"
+        cat .m2/artifactory/settings.xml
+        echo "### [DEBUG X github settings file]"
+        cat .m2/github/settings.xml
+        echo "### [DEBUG X standard settings file]"
         cat .m2/settings.xml
         echo "### [DEBUG] End"
         echo "### [DEBUG2] Start: effective-settings" 
