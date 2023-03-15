@@ -78,6 +78,7 @@ jobs:
         cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
         settings-path: ${{ github.workspace }}/.github/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
+        # TODO: provide a variable for the github settings.xml location
         
     - name: Setup Maven settings.xml
       uses: whelk-io/maven-settings-xml-action@v21
@@ -86,12 +87,12 @@ jobs:
           [
             {
               "id": "central",
-              "username": "boeckli@swissperform.ch",
+              "username": "${ARTIFACTORY_USERNAME}",
               "password": "${env.ARTIFACTORY_TOKEN}"
             },
             {
               "id": "snapshots",
-              "username": "boeckli@swissperform.ch",
+              "username": "${ARTIFACTORY_USERNAME}",
               "password": "${env.ARTIFACTORY_TOKEN}"
             },
             {
@@ -101,6 +102,7 @@ jobs:
             },
           ]
         output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
+        # TODO: provide a variable for the artifactory settings.xml location
         
     - name: Run Maven Deploy
       env:

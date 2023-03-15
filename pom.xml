@@ -13,6 +13,7 @@
         <tag>HEAD</tag>
     </scm>
 
+    <!-- TODO: move distributionManagement to settings.xml -->
     <distributionManagement>
         <repository>
             <id>github</id>
@@ -87,6 +88,7 @@
                 </plugins>
             </build>
         </profile>
+        <!-- TODO: move profile to settings.xml -->
         <profile>
             <id>artifactory</id>
             <repositories>
