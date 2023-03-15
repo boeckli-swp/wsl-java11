@@ -86,12 +86,12 @@ jobs:
           [
             {
               "id": "central",
-              "username": "${env.ARTIFACTORY_USERNAME}",
+              "username": "boeckli@swissperform.ch",
               "password": "${env.ARTIFACTORY_TOKEN}"
             },
             {
               "id": "snapshots",
-              "username": "${env.ARTIFACTORY_USERNAME}",
+              "username": "boeckli@swissperform.ch",
               "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
