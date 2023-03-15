@@ -93,7 +93,12 @@ jobs:
               "id": "snapshots",
               "username": "boeckli@swissperform.ch",
               "password": "${env.ARTIFACTORY_TOKEN}"
-            }
+            },
+            {
+              "id": "github",
+              "username": "${env.GITHUB_ACTOR}",
+              "password": "${env.GITHUB_TOKEN}"
+            },
           ]
         output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
         
@@ -105,6 +110,7 @@ jobs:
         ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
         ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
 
+      # TODO: debug output below should be used for the other output. debugging can be enabled. see: https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
       run: |
         
         echo "::debug:: Debug output"
