@@ -120,6 +120,7 @@ jobs:
         echo "### [DEBUG4] Start token $ARTIFACTORY_TOKEN"
         echo -n "$ARTIFACTORY_USERNAME" | wc -m
         echo -n "$ARTIFACTORY_TOKEN" | wc -m
+        echo "### [DEBUG5] GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
