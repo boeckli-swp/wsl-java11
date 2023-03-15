@@ -43,3 +43,5 @@ or if JDK11 has been set correctly just
 ```shell
 java -jar wsl-java11-1.0-SNAPSHOT-spring-boot.jar
 ```
+## Remark
+./github/.m2 folder is excluded from git by intention. the settings.xml files are placed here during github actions build (artifactory and gitub)
