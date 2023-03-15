@@ -88,7 +88,12 @@ jobs:
               "id": "central",
               "username": "${env.ARTIFACTORY_USERNAME}",
               "password": "${env.ARTIFACTORY_TOKEN}"
-            }
+            },
+            {
+              "id": "snapshots",
+              "username": "${env.ARTIFACTORY_USERNAME}",
+              "password": "${env.ARTIFACTORY_TOKEN}"
+            },
           ]
         
     - name: Run Maven Deploy
@@ -99,10 +104,13 @@ jobs:
       run: |
         echo "### [DEBUG] Start: Settings xml "
         cat ~/.m2/settings.xml
-        echo "### [DEBUG] End: Settings xml "
-        echo "### [DEBUG2] End: Settings xml "
+        echo "### [DEBUG] End"
+        echo "### [DEBUG2] Start: effective-settings"
         mvn help:effective-settings
-        echo "### [DEBUG2] End: Settings xml "
+        echo "### [DEBUG2] End"
+        echo "### [DEBUG3] Start: effective-pom"
+        mvn help:effective-pom
+        echo "### [DEBUG3] End"
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
