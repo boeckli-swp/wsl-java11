@@ -95,7 +95,7 @@ jobs:
               "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
-        output_file: .m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml  
+        output_file: ~/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml  
         
     - name: Run Maven Deploy
       env:
