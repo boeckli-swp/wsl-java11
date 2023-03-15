@@ -89,14 +89,6 @@
         </profile>
         <profile>
             <id>artifactory</id>
-            <!--
-            <activation>
-                <property>
-                    <name>env.BUILD_ENV</name>
-                    <value>github-actions</value>
-                </property>
-            </activation>
-            -->
             <repositories>
                 <repository>
                     <id>central</id>
@@ -132,6 +124,18 @@
                     <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
                 </pluginRepository>
             </pluginRepositories>
+            <distributionManagement>
+                <repository>
+                    <id>central</id>
+                    <name>a0tgibt9ketmk-artifactory-primary-0-releases</name>
+                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-release</url>
+                </repository>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>a0tgibt9ketmk-artifactory-primary-0-snapshots</name>
+                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-snapshot</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
     </profiles>
     
