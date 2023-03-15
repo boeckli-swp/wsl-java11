@@ -101,7 +101,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
         BRANCH_MVN_VERSION: ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
-        ARTIFACTORY_USERNAME_REF: "stream-github-actions"
+        ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
         ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
 
       run: |
