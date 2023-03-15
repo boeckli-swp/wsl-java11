@@ -106,6 +106,10 @@ jobs:
         ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
 
       run: |
+        
+        echo "::debug:: Debug output"
+        echo "::notice::Info output"
+        
         echo "### [DEBUG] artifactory settings file:"
         cat $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
         echo "### [DEBUG] github settings file:"
