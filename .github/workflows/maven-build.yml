@@ -110,8 +110,8 @@ jobs:
         echo "### [DEBUG] Start: Settings xml "
         cat .m2/settings.xml
         echo "### [DEBUG] End"
-        echo "### [DEBUG2] Start: effective-settings"
-        mvn help:effective-settings
+        echo "### [DEBUG2] Start: effective-settings" 
+        mvn help:effective-settings -Partifactory
         echo "### [DEBUG2] End"
         echo "### [DEBUG3] Start: effective-pom"
         mvn help:effective-pom
