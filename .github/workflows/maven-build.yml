@@ -90,7 +90,6 @@ jobs:
               "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
-        output_file: .m2/settings.xml  
         
     - name: Run Maven Deploy
       env:
@@ -101,6 +100,9 @@ jobs:
         echo "### [DEBUG] Start: Settings xml "
         cat ~/.m2/settings.xml
         echo "### [DEBUG] End: Settings xml "
+        echo "### [DEBUG2] End: Settings xml "
+        mvn help:effective-settings
+        echo "### [DEBUG2] End: Settings xml "
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
