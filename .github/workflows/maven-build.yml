@@ -106,11 +106,6 @@ jobs:
         ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
 
       run: |
-        
-        echo "### [DEBUG5] GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-        ls -la /home/runner/work/wsl-java11/wsl-java11
-        ls -la /home/runner/work/wsl-java11/wsl-java11/.m2
-        
         echo "### [DEBUG] Start: Settings xml "
         echo "### [DEBUG X artifactory settings file]"
         cat $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
@@ -131,8 +126,8 @@ jobs:
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
-        mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION"
-        mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml -Partifactory 
+        mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION" -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
+        mvn -B deploy -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
         
   deploy:
     
