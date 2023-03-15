@@ -111,7 +111,7 @@ jobs:
         cat .m2/settings.xml
         echo "### [DEBUG] End"
         echo "### [DEBUG2] Start: effective-settings" 
-        mvn help:effective-settings -Partifactory
+        mvn help:effective-settings -s .m2/settings.xml -Partifactory
         echo "### [DEBUG2] End"
         echo "### [DEBUG3] Start: effective-pom"
         mvn help:effective-pom
