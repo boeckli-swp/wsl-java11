@@ -109,6 +109,7 @@ jobs:
         
         echo "### [DEBUG5] GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
         ls -la /home/runner/work/wsl-java11/wsl-java11
+        ls -la /home/runner/work/wsl-java11/wsl-java11/.m2
         
         echo "### [DEBUG] Start: Settings xml "
         echo "### [DEBUG X artifactory settings file]"
