@@ -77,7 +77,7 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
-        settings-path: ${{ github.workspace }}/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
+        settings-path: ${{ github.workspace }}/.github/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
         
     - name: Setup Maven settings.xml
       uses: whelk-io/maven-settings-xml-action@v21
@@ -95,7 +95,7 @@ jobs:
               "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
-        output_file: ${{ github.workspace }}/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
+        output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
         
     - name: Run Maven Deploy
       env:
@@ -107,23 +107,23 @@ jobs:
 
       run: |
         echo "### [DEBUG] artifactory settings file:"
-        cat $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
+        cat $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
         echo "### [DEBUG] github settings file:"
-        cat $GITHUB_WORKSPACE/.m2/github/settings.xml
+        cat $GITHUB_WORKSPACE/.github/.m2/github/settings.xml
         echo "### [DEBUG] effective-settings for artifactory" 
-        mvn help:effective-settings -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
+        mvn help:effective-settings -Partifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
         echo "### [DEBUG] effective-settings for github" 
-        mvn help:effective-settings -s $GITHUB_WORKSPACE/.m2/github/settings.xml
+        mvn help:effective-settings -s $GITHUB_WORKSPACE/.github/.m2/github/settings.xml
         echo "### [DEBUG] effective-pom for artifactory"
-        mvn help:effective-pom -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
+        mvn help:effective-pom -Partifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
         echo "### [DEBUG] effective-pom for github"
-        mvn help:effective-pom -s $GITHUB_WORKSPACE/.m2/github/settings.xml
+        mvn help:effective-pom -s $GITHUB_WORKSPACE/.github/.m2/github/settings.xml
         echo "### [DEBUG] Maven version"
         mvn -version
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
-        mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION" -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
-        mvn -B deploy -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
+        mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION" -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
+        mvn -B deploy -Partifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
         
   deploy:
     
