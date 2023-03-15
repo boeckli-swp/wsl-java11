@@ -86,12 +86,14 @@ jobs:
           ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
           
       - name: Get Deployable
+        # orig: curl 'https://maven.pkg.github.com/boeckli-swp/wsl-java11/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}-spring-boot.jar' \
         run: |
           echo "### Retrieving deployable jar ###"
-          curl 'https://maven.pkg.github.com/boeckli-swp/wsl-java11/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}.jar' \
+          curl 'https://boeckli1.jfrog.io/artifactory/boeckli-release/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}-spring-boot.jar' \
             -H "Authorization: Bearer ${{ secrets.ARTIFACTORY_TOKEN }}" \
             -L \
             -o target/deployable.jar
+          ls -la target
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ github.token }}
