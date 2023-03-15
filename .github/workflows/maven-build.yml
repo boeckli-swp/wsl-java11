@@ -121,6 +121,7 @@ jobs:
         echo -n "$ARTIFACTORY_USERNAME" | wc -m
         echo -n "$ARTIFACTORY_TOKEN" | wc -m
         echo "### [DEBUG5] GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        ls -la /home/runner/work/wsl-java11/wsl-java11
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
