@@ -99,7 +99,7 @@ jobs:
               "id": "github",
               "username": "${env.GITHUB_ACTOR}",
               "password": "${env.GITHUB_TOKEN}"
-            },
+            }
           ]
         output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
         # TODO: provide a variable for the artifactory settings.xml location
