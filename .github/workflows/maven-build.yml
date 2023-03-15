@@ -114,10 +114,10 @@ jobs:
         echo "### [DEBUG3] Start: effective-pom"
         mvn help:effective-pom
         echo "### [DEBUG3] End"
-        echo "### [DEBUG4] Start token user $ARTIFACTORY_USERNAME_REF"
-        echo "### [DEBUG4] Start token $ARTIFACTORY_TOKEN_REF"
-        echo -n "$ARTIFACTORY_USERNAME_REF" | wc -m
-        echo -n "$ARTIFACTORY_TOKEN_REF" | wc -m
+        echo "### [DEBUG4] Start token user $ARTIFACTORY_USERNAME"
+        echo "### [DEBUG4] Start token $ARTIFACTORY_TOKEN"
+        echo -n "$ARTIFACTORY_USERNAME" | wc -m
+        echo -n "$ARTIFACTORY_TOKEN" | wc -m
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
