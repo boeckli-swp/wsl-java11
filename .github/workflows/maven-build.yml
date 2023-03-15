@@ -113,16 +113,11 @@ jobs:
         cat $GITHUB_WORKSPACE/.m2/github/settings.xml
         echo "### [DEBUG] End"
         echo "### [DEBUG2] Start: effective-settings" 
-        mvn help:effective-settings -s .m2/settings.xml -Partifactory
+        mvn help:effective-settings -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
         echo "### [DEBUG2] End"
         echo "### [DEBUG3] Start: effective-pom"
-        mvn help:effective-pom
+        mvn help:effective-pom -Partifactory -s $GITHUB_WORKSPACE/.m2/artifactory/settings.xml
         echo "### [DEBUG3] End"
-        echo "### [DEBUG4] Start token user $ARTIFACTORY_USERNAME"
-        echo "### [DEBUG4] Start token $ARTIFACTORY_TOKEN"
-        echo -n "$ARTIFACTORY_USERNAME" | wc -m
-        echo -n "$ARTIFACTORY_TOKEN" | wc -m
-        
         
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
