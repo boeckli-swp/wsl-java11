@@ -115,7 +115,7 @@ jobs:
         echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
         mvn -version
         mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION"
-        mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml  
+        mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml -Partifactory 
         
   deploy:
     
