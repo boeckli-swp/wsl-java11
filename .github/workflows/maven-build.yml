@@ -95,6 +95,8 @@ jobs:
               "password": "${env.ARTIFACTORY_TOKEN}"
             }
           ]
+        # by default it goes to ~/.m2/settings.xml  
+        output_file: .m2/settings.xml  
         
     - name: Run Maven Deploy
       env:
@@ -106,7 +108,7 @@ jobs:
 
       run: |
         echo "### [DEBUG] Start: Settings xml "
-        cat ~/.m2/settings.xml
+        cat .m2/settings.xml
         echo "### [DEBUG] End"
         echo "### [DEBUG2] Start: effective-settings"
         mvn help:effective-settings
