@@ -77,18 +77,65 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+        settings-path: ${{ github.workspace }}/.github/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
+        # TODO: provide a variable for the github settings.xml location
+        
+    - name: Setup Maven settings.xml
+      uses: whelk-io/maven-settings-xml-action@v21
+      with:
+        servers: >
+          [
+            {
+              "id": "central",
+              "username": "${ARTIFACTORY_USERNAME}",
+              "password": "${env.ARTIFACTORY_TOKEN}"
+            },
+            {
+              "id": "snapshots",
+              "username": "${ARTIFACTORY_USERNAME}",
+              "password": "${env.ARTIFACTORY_TOKEN}"
+            },
+            {
+              "id": "github",
+              "username": "${env.GITHUB_ACTOR}",
+              "password": "${env.GITHUB_TOKEN}"
+            }
+          ]
+        output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
+        # TODO: provide a variable for the artifactory settings.xml location
         
     - name: Run Maven Deploy
       env:
         GITHUB_TOKEN: ${{ github.token }}
         BRANCH_MVN_VERSION: ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
+        ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+        ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
+
+      # TODO: debug output below should be used for the other output. debugging can be enabled. see: https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
       run: |
-        echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
+        
+        echo "::debug:: Debug output"
+        echo "::notice::Info output"
+        
+        echo "### [DEBUG] artifactory settings file:"
+        cat $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
+        echo "### [DEBUG] github settings file:"
+        cat $GITHUB_WORKSPACE/.github/.m2/github/settings.xml
+        echo "### [DEBUG] effective-settings for artifactory" 
+        mvn help:effective-settings -Partifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
+        echo "### [DEBUG] effective-settings for github" 
+        mvn help:effective-settings -s $GITHUB_WORKSPACE/.github/.m2/github/settings.xml
+        echo "### [DEBUG] effective-pom for artifactory"
+        mvn help:effective-pom -Partifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
+        echo "### [DEBUG] effective-pom for github"
+        mvn help:effective-pom -s $GITHUB_WORKSPACE/.github/.m2/github/settings.xml
+        echo "### [DEBUG] Maven version"
         mvn -version
-        mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION"
-        mvn -B deploy -s $GITHUB_WORKSPACE/settings.xml  
+        
+        echo "### Build started for branch $GIT_BRANCH with version $BRANCH_MVN_VERSION"
+        mvn -B versions:set -DnewVersion="$BRANCH_MVN_VERSION" -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
+        mvn -B deploy -Partifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
         
   deploy:
     
@@ -131,18 +178,45 @@ jobs:
     - uses: actions/checkout@master
 
     - name: Set up JDK 11
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v3.10.0
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: 'maven'
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
-        settings-path: ${{ github.workspace }} # location for the settings.xml file  
+        settings-path: ${{ github.workspace }}/.github/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
+        # TODO: provide a variable for the github settings.xml location
+        
+    - name: Setup Maven settings.xml
+      uses: whelk-io/maven-settings-xml-action@v21
+      with:
+        servers: >
+          [
+            {
+              "id": "central",
+              "username": "${ARTIFACTORY_USERNAME}",
+              "password": "${env.ARTIFACTORY_TOKEN}"
+            },
+            {
+              "id": "snapshots",
+              "username": "${ARTIFACTORY_USERNAME}",
+              "password": "${env.ARTIFACTORY_TOKEN}"
+            },
+            {
+              "id": "github",
+              "username": "${env.GITHUB_ACTOR}",
+              "password": "${env.GITHUB_TOKEN}"
+            }
+          ]
+        output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
+        # TODO: provide a variable for the artifactory settings.xml location
 
     - name: Run Sonar Code Scan
-      run: mvn clean verify sonar:sonar -Pcoverage
+      run: mvn clean verify sonar:sonar -Pcoverage,artifactory -s $GITHUB_WORKSPACE/.github/.m2/artifactory/settings.xml
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+        ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+        ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
 
 

@@ -10,3 +10,5 @@
 /.idea/
 /VERSION
 /wsl-java11.iml
+/.m2/
+/.github/.m2/
