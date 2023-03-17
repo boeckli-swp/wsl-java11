@@ -108,10 +108,11 @@ jobs:
       env:
         JF_URL: ${{ secrets.ARTIFACTORY_URL }}
         JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
-        
-    - run: |
+    
+    - name: jfrog cli
+      run: |
         jfrog --version
-        jfrog rt build-publish Hans 123
+        jfrog rt build-publish --server-id github Hans $GITHUB_RUN_ID
         
     - name: Run Maven Deploy
       env:
