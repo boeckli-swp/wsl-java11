@@ -108,6 +108,9 @@ jobs:
       env:
         JF_URL: ${{ secrets.ARTIFACTORY_URL }}
         JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
+
+    - name: List of the GitHub Actions environment variables
+      run: env
     
     - name: jfrog cli
       run: |
