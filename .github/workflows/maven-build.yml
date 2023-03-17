@@ -115,7 +115,7 @@ jobs:
     - name: jfrog cli
       run: |
         jfrog --version
-        jfrog rt build-publish --server-id github Hans $GITHUB_RUN_ID
+        jfrog rt build-publish Hans $GITHUB_RUN_ID
         
     - name: Run Maven Deploy
       env:
