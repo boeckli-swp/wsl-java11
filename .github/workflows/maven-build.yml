@@ -111,7 +111,7 @@ jobs:
         
     - run: |
         jfrog --version
-        jfrog rt build-publish Hans 123 --server-id --project wsl-java11 ---build-url https://github.com/boeckli-swp/wsl-java11/actions/runs/4448371239 -status gugus --comment hallo echo --source-repo https://github.com/boeckli-swp/wsl-java11.git
+        jfrog rt build-publish --server-id github  --project "wsl-java11" ---build-url "https://github.com/boeckli-swp/wsl-java11/actions/runs/4448371239" -status gugus --comment "hallo echo" --source-repo "https://github.com/boeckli-swp/wsl-java11.git" Hans 123
         
     - name: Run Maven Deploy
       env:
