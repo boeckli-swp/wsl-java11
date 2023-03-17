@@ -115,7 +115,7 @@ jobs:
     - name: jfrog cli
       run: |
         jfrog --version
-        jfrog rt build-publish "org.example:wsl-java11 / feature_use-jfrog-cli_2.3.2-20230317.141223-1" $GITHUB_RUN_NUMBER
+        jfrog rt build-publish "org.example:wsl-java11" $GITHUB_RUN_NUMBER
         
     - name: Run Maven Deploy
       env:
