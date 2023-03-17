@@ -104,6 +104,12 @@ jobs:
         output_file: ${{ github.workspace }}/.github/.m2/artifactory/settings.xml # by default it goes to ~/.m2/settings.xml
         # TODO: provide a variable for the artifactory settings.xml location
         
+    - uses: jfrog/setup-jfrog-cli@v3
+      env:
+        JF_URL: ${{ secrets.ARTIFACTORY_URL }}
+        JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
+    - run: jfrog --version    
+        
     - name: Run Maven Deploy
       env:
         GITHUB_TOKEN: ${{ github.token }}
