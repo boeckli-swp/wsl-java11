@@ -304,8 +304,12 @@
                         <configuration>
                             <publisher>
                                 <contextUrl>${env.ARTIFACTORY_URL}</contextUrl>
+                                <username>stream-github-actions</username>
                                 <password>${env.ARTIFACTORY_TOKEN}</password>
+                                <repoKey>boeckli-release</repoKey>
+                                <snapshotRepoKey>boeckli-snapshot</snapshotRepoKey>
                             </publisher>
+                        </configuration>
                             <buildInfo>
                                 <buildName>plugin-demo</buildName>
                                 <buildNumber>${GITHUB_RUN_NUMBER}</buildNumber>
