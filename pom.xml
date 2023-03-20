@@ -290,7 +290,7 @@
                 Capture a Build Info object which can be passed to the Artifactory REST API to provide a fully traceable build context.
                 Automatically publish all build artifacts at the end of the build.
             -->
-            <!--
+            <!-- xx -->
             <plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
@@ -304,7 +304,7 @@
                         </goals>
                         <configuration>
                             <publisher>
-                                <contextUrl>${env.ARTIFACTORY_URL}</contextUrl>
+                                <contextUrl>https://boeckli1.jfrog.io/artifactory</contextUrl>
                                 <username>stream-github-actions</username>
                                 <password>${env.ARTIFACTORY_TOKEN}</password>
                                 <repoKey>boeckli-release</repoKey>
@@ -318,7 +318,7 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
+            
             
             <plugin>
                 <groupId>org.springframework.boot</groupId>
