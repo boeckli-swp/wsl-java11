@@ -302,10 +302,14 @@
                             <goal>publish</goal>
                         </goals>
                         <configuration>
+                            <publisher>
+                                <contextUrl>${env.ARTIFACTORY_URL}</contextUrl>
+                                <password>${env.ARTIFACTORY_TOKEN}</password>
+                            </publisher>
                             <buildInfo>
                                 <buildName>plugin-demo</buildName>
-                                <buildNumber>${buildNumber}</buildNumber>
-                                <buildUrl>http://build-url.org</buildUrl>
+                                <buildNumber>${GITHUB_RUN_NUMBER}</buildNumber>
+                                <!--<buildUrl>http://build-url.org</buildUrl>-->
                             </buildInfo>
                         </configuration>
                     </execution>
