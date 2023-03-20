@@ -123,7 +123,8 @@ jobs:
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
         ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
         # ${{ secrets.ARTIFACTORY_TOKEN }}
-        ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_JWT_TOKEN }}
+        # ${{ secrets.ARTIFACTORY_JWT_TOKEN }}
+        ARTIFACTORY_TOKEN: hallo123
         ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
 
       # TODO: debug output below should be used for the other output. debugging can be enabled. see: https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
