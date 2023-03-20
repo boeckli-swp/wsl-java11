@@ -290,7 +290,7 @@
                 Capture a Build Info object which can be passed to the Artifactory REST API to provide a fully traceable build context.
                 Automatically publish all build artifacts at the end of the build.
             -->
-            <!-- xx -->
+            <!-- xx 
             <plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
@@ -317,7 +317,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             
             
             <plugin>
