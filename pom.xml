@@ -290,6 +290,7 @@
                 Capture a Build Info object which can be passed to the Artifactory REST API to provide a fully traceable build context.
                 Automatically publish all build artifacts at the end of the build.
             -->
+            <!--
             <plugin>
                 <groupId>org.jfrog.buildinfo</groupId>
                 <artifactId>artifactory-maven-plugin</artifactId>
@@ -312,12 +313,12 @@
                             <buildInfo>
                                 <buildName>plugin-demo</buildName>
                                 <buildNumber>${GITHUB_RUN_NUMBER}</buildNumber>
-                                <!--<buildUrl>http://build-url.org</buildUrl>-->
                             </buildInfo>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+            -->
             
             <plugin>
                 <groupId>org.springframework.boot</groupId>
