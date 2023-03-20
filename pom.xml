@@ -269,7 +269,7 @@
                         <goals>
                             <goal>revision</goal>
                         </goals>
-                        <phase>initialize</phase>
+                        <phase>validate</phase>
                     </execution>
                 </executions>
                 <configuration>
@@ -280,6 +280,36 @@
                     <runOnlyOnce>true</runOnlyOnce>
                     <skipPoms>false</skipPoms>
                 </configuration>
+            </plugin>
+
+            <!--
+            Run per default in the validate phase
+            The Maven Artifactory Plugin, Artifactory is fully integrated with Maven builds and allows you to do the following:
+            
+                Attach properties to published artifacts in Artifactory metadata.
+                Capture a Build Info object which can be passed to the Artifactory REST API to provide a fully traceable build context.
+                Automatically publish all build artifacts at the end of the build.
+            -->
+            <plugin>
+                <groupId>org.jfrog.buildinfo</groupId>
+                <artifactId>artifactory-maven-plugin</artifactId>
+                <version>3.5.2</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <configuration>
+                            <buildInfo>
+                                <buildName>plugin-demo</buildName>
+                                <buildNumber>${buildNumber}</buildNumber>
+                                <buildUrl>http://build-url.org</buildUrl>
+                            </buildInfo>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             
             <plugin>
