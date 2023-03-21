@@ -314,7 +314,8 @@
                                 <publishBuildInfo>true</publishBuildInfo>
                             </publisher>
                             <buildInfo>
-                                <!--<buildName>plugin-demo</buildName>-->
+                                <!-- If you'd like to associate the published build-info with a JFrog Project, add the project key here 
+                                <project> .. </project> -->
                                 <buildNumber>${GITHUB_RUN_NUMBER}</buildNumber>
                                 <buildUrl>${JFROG_CLI_BUILD_URL}</buildUrl>
                             </buildInfo>
