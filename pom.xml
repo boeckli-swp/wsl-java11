@@ -305,8 +305,8 @@
                         <configuration>
                             <publisher>
                                 <contextUrl>https://boeckli1.jfrog.io/artifactory</contextUrl>
-                                <username>stream-github-actions</username>
-                                <password>${env.ARTIFACTORY_TOKEN}</password>
+                                <username>testadmin</username>
+                                <password>${env.ARTIFACTORY_JWT_TOKEN}</password>
                                 <repoKey>boeckli-release</repoKey>
                                 <snapshotRepoKey>boeckli-snapshot</snapshotRepoKey>
                             </publisher>
