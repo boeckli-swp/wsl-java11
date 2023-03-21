@@ -311,7 +311,7 @@
                                 <snapshotRepoKey>boeckli-snapshot</snapshotRepoKey>
                             </publisher>
                             <buildInfo>
-                                <buildName>plugin-demo</buildName>
+                                <!--<buildName>plugin-demo</buildName>-->
                                 <buildNumber>${GITHUB_RUN_NUMBER}</buildNumber>
                             </buildInfo>
                         </configuration>
