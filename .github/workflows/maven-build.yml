@@ -109,11 +109,9 @@ jobs:
         JF_URL: ${{ env.ARTIFACTORY_URL }}
         JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
 
-    - name: List of the GitHub Actions environment variables
-      run: env
-    
     - name: jfrog cli
       run: |
+        env
         jfrog --version
         
     - name: Run Maven Deploy
@@ -125,6 +123,7 @@ jobs:
         # ${{ secrets.ARTIFACTORY_TOKEN }}
         # ${{ secrets.ARTIFACTORY_JWT_TOKEN }}
         ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
+        ARTIFACTORY_JWT_TOKEN: ${{ secrets.ARTIFACTORY_JWT_TOKEN }}
         #ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
 
       # TODO: debug output below should be used for the other output. debugging can be enabled. see: https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
