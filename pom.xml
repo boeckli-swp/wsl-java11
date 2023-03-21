@@ -314,6 +314,7 @@
                             <buildInfo>
                                 <!--<buildName>plugin-demo</buildName>-->
                                 <buildNumber>${GITHUB_RUN_NUMBER}</buildNumber>
+                                <buildUrl>${JFROG_CLI_BUILD_URL}</buildUrl>
                             </buildInfo>
                         </configuration>
                     </execution>
