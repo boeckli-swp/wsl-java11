@@ -310,6 +310,8 @@
                                 <password>${env.ARTIFACTORY_JWT_TOKEN}</password>
                                 <repoKey>boeckli-release</repoKey>
                                 <snapshotRepoKey>boeckli-snapshot</snapshotRepoKey>
+                                <publishArtifacts>true</publishArtifacts>
+                                <publishBuildInfo>true</publishBuildInfo>
                             </publisher>
                             <buildInfo>
                                 <!--<buildName>plugin-demo</buildName>-->
