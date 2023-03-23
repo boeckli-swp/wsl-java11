@@ -80,14 +80,6 @@ jobs:
         settings-path: ${{ github.workspace }}/.github/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
         # TODO: provide a variable for the github settings.xml location
         
-    - name: Cache local Maven repository
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-    
-        
     - name: Setup Maven settings.xml
       uses: whelk-io/maven-settings-xml-action@v21
       with:
@@ -117,6 +109,16 @@ jobs:
         JF_URL: ${{ env.ARTIFACTORY_URL }}
         JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         
+    - name: Cache for maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: maven-repo-${{ hashFiles('**/pom.xml') }}-build
+        restore-keys: |
+          maven-repo-${{ hashFiles('**/pom.xml') }}-build
+          maven-repo-${{ hashFiles('**/pom.xml') }}
+          maven-repo-  
+    
     - name: debugging
       run: |
         env
