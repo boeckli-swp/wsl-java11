@@ -44,7 +44,7 @@ jobs:
           cache: 'maven'
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
           settings-path: ${{ github.workspace }} # location for the settings.xml file
-
+          
       - name: Set Maven Versions
         id: set_version
         run: |
@@ -79,6 +79,14 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml.
         settings-path: ${{ github.workspace }}/.github/.m2/github # location for the settings.xml file. Default is ~/.m2/settings.xml
         # TODO: provide a variable for the github settings.xml location
+        
+    - name: Cache local Maven repository
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-    
         
     - name: Setup Maven settings.xml
       uses: whelk-io/maven-settings-xml-action@v21
