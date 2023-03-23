@@ -110,14 +110,17 @@ jobs:
         JF_ACCESS_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         
     - name: Cache for maven dependencies
-      uses: actions/cache@v3
+      uses: actions/cache/save@v3
       with:
         path: ~/.m2/repository
-        key: maven-repo-${{ hashFiles('**/pom.xml') }}-build
-        restore-keys: |
-          maven-repo-${{ hashFiles('**/pom.xml') }}-build
-          maven-repo-${{ hashFiles('**/pom.xml') }}
-          maven-repo-  
+        key: maven-local-repo
+        
+    - name: Cache for maven dependencies
+      uses: actions/cache/restore@v3
+      with:
+        path: ~/.m2/repository
+        key: maven-local-repo
+        fail-on-cache-miss: true
     
     - name: debugging
       run: |
