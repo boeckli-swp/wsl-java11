@@ -62,7 +62,7 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: ~/.m2/repository
-          key: maven-local-repo-${{ GITHUB_RUN_ID }}
+          key: maven-local-repo-${GITHUB_RUN_ID}
   
   build:
 
@@ -124,7 +124,7 @@ jobs:
       uses: actions/cache/restore@v3
       with:
         path: ~/.m2/repository
-        key: maven-local-repo-${{ GITHUB_RUN_ID }}
+        key: maven-local-repo-${GITHUB_RUN_ID}
         fail-on-cache-miss: true
     
     - name: debugging
