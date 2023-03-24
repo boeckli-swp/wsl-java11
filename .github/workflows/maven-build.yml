@@ -52,6 +52,10 @@ jobs:
           chmod +x "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
           # run set version script
           "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"  
+          echo "### Summary ###"
+          echo "GIT_BRANCH: ${{setup.outputs.GIT_BRANCH}}"
+          echo "ORIGINAL_MVN_VERSION: ${{setup.outputs.ORIGINAL_MVN_VERSION}}"
+          echo "BRANCH_MVN_VERSION: ${{setup.outputs.BRANCH_MVN_VERSION}}"
           
       # this is a simple prebuild to build up cache against GitHub package repository manager
       - name: Run maven package
