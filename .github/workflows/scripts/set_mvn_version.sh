@@ -28,14 +28,14 @@ fi
 
 # get current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
-echo "GIT_BRANCH=$branch" >> $GITHUB_OUTPUT
+echo "GIT_BRANCH=$branch" >> "$GITHUB_OUTPUT"
 echo "### Branch is $branch"
 branch=${branch//[\/]/_}
 echo "### Branch is $branch"
 
 # get current version of the top level pom
 MVN_VERSION=$( mvn help:evaluate -Dexpression=project.version -q -DforceStdout )
-echo "ORIGINAL_MVN_VERSION=$MVN_VERSION" >> $GITHUB_OUTPUT
+echo "ORIGINAL_MVN_VERSION=$MVN_VERSION" >> "$GITHUB_OUTPUT"
 echo "### Current version is: $MVN_VERSION"
 
 # extract version suffix
@@ -49,9 +49,10 @@ echo "### Prefix is: $prefix"
 if [[ "$branch" != "master" ]] 
 then
     NEW_MAVEN_VERSION=${branch}_$prefix-$suffix
+    echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 else
     NEW_MAVEN_VERSION=$MVN_VERSION
+    echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 fi
-echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> $GITHUB_OUTPUT
 
 echo "### Changed version from #$MVN_VERSION# in pom.xml files to #$NEW_MAVEN_VERSION#"
