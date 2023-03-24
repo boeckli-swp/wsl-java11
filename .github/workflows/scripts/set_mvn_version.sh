@@ -49,10 +49,9 @@ echo "### Prefix is: $prefix"
 if [[ "$branch" != "master" ]] 
 then
     NEW_MAVEN_VERSION=${branch}_$prefix-$suffix
-    echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 else
     NEW_MAVEN_VERSION=$MVN_VERSION
-    echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 fi
+echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
 echo "### Changed version from #$MVN_VERSION# in pom.xml files to #$NEW_MAVEN_VERSION#"
