@@ -54,6 +54,4 @@ else
 fi
 echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
-echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
-
-echo "Summary: $GITHUB_OUTPUT"
+echo "### Changed version from -$MVN_VERSION- in pom.xml files to -$NEW_MAVEN_VERSION-"
