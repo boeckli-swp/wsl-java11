@@ -1,7 +1,29 @@
 #!/bin/bash
+# Here we figure out what version the build will have.
+# If we are on the master, then version will remain as it is
+# If we are on a feature branch (or non master branch) then we need to change the maven version to avoid that artefact gets overwritten and to be able to 
+# add a dependency to a feature branch artifact-
+# The rule is the following:
+# master branch:  use version specified in pom.xml
+# feature branch: the feature branch name will be prepended to the maven version. Slash in feature branch name is replaced with a underscore
+# Example: 
+#
+# Given
+# feature branch name: feature/DEVA-1234
+# version in pom.xml:  1.0.0-SNAPSHOT     
+# Result
+# version calculated:  feature_DEVA-1234-1.0.0-SNAPSHOT   
+#
+# Output of this script are written into GITHUB_OUTPUT area:
+# variable: GIT_BRANCH
+# variable: ORIGINAL_MVN_VERSION
+# variable: BRANCH_MVN_VERSION
+# Those variable can be used later in other steps:
+# ${{needs.setup.outputs.GIT_BRANCH}}
+# ${{needs.setup.outputs.ORIGINAL_MVN_VERSION}}
+# ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
 
 echo 'Will change the version in pom.xml files...'
-
 # check if the checkout was to checkout a branch
 if [ $3 != '1' ]
     then echo 'git checkout did not checkout a branch - quitting';exit
@@ -36,3 +58,5 @@ fi
 echo "BRANCH_MVN_VERSION=$NEW_MAVEN_VERSION" >> "$GITHUB_OUTPUT"
 
 echo "### Changed version in pom.xml files $NEW_MAVEN_VERSION"
+
+echo "Summary: $GITHUB_OUTPUT"
