@@ -22,7 +22,7 @@
 
 echo 'Will change the version in pom.xml files...'
 # check if the checkout was to checkout a branch
-if [ $3 != '1' ]
+if [ "$3" != '1' ]
     then echo 'git checkout did not checkout a branch - quitting';exit
 fi
 
@@ -39,10 +39,10 @@ echo "ORIGINAL_MVN_VERSION=$MVN_VERSION" >> "$GITHUB_OUTPUT"
 echo "### Current version is: $MVN_VERSION"
 
 # extract version suffix
-suffix=$(echo $MVN_VERSION | cut -d \- -f 2)
+suffix=$(echo "$MVN_VERSION" | cut -d \- -f 2)
 echo "### Suffix is: $suffix"
 
-prefix=$(echo $MVN_VERSION | cut -d \- -f 1)
+prefix=$(echo "$MVN_VERSION" | cut -d \- -f 1)
 echo "### Prefix is: $prefix"
 
 # build new version
