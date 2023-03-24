@@ -42,7 +42,7 @@
 
         <!-- Versions Dependencies -->
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <log4j.version>2.17.0</log4j.version>
+        <log4j.version>2.14.0</log4j.version>
         <junit.version>5.9.1</junit.version>
         
         <project.scm.id>github</project.scm.id>
@@ -157,13 +157,6 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.0</version>
-        </dependency>
-
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
