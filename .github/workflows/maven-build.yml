@@ -283,10 +283,6 @@ jobs:
       with:
         command: monitor
         
-    - name: show snyk variables
-      run: |
-        env
-
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
