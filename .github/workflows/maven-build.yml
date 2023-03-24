@@ -52,10 +52,6 @@ jobs:
           chmod +x "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"
           # run set version script
           "${GITHUB_WORKSPACE}/.github/workflows/scripts/set_mvn_version.sh"  
-          echo "### Summary ###"
-          echo "GIT_BRANCH: ${{steps.set_version.outputs.GIT_BRANCH}}"
-          echo "ORIGINAL_MVN_VERSION: ${steps.set_version.outputs.ORIGINAL_MVN_VERSION}}"
-          echo "BRANCH_MVN_VERSION: ${steps.set_version.outputs.BRANCH_MVN_VERSION}}"
           
       # this is a simple prebuild to build up cache against GitHub package repository manager
       - name: Run maven package
@@ -144,13 +140,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
         BRANCH_MVN_VERSION: ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
+        ORIGINAL_MVN_VERSION: ${{needs.setup.outputs.ORIGINAL_MVN_VERSION}}
         GIT_BRANCH: ${{needs.setup.outputs.GIT_BRANCH}}
         ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
-        # ${{ secrets.ARTIFACTORY_TOKEN }}
-        # ${{ secrets.ARTIFACTORY_JWT_TOKEN }}
         ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
         ARTIFACTORY_JWT_TOKEN: ${{ secrets.ARTIFACTORY_JWT_TOKEN }}
-        #ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
 
       # TODO: debug output below should be used for the other output. debugging can be enabled. see: https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging
       run: |
