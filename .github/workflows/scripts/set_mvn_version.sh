@@ -18,10 +18,7 @@
 # variable: GIT_BRANCH
 # variable: ORIGINAL_MVN_VERSION
 # variable: BRANCH_MVN_VERSION
-# Those variable can be used later in other steps:
-# ${{needs.setup.outputs.GIT_BRANCH}}
-# ${{needs.setup.outputs.ORIGINAL_MVN_VERSION}}
-# ${{needs.setup.outputs.BRANCH_MVN_VERSION}}
+# Those variable can be used later in other steps or jobs
 
 echo 'Will change the version in pom.xml files...'
 # check if the checkout was to checkout a branch
