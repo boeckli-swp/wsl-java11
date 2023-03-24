@@ -22,8 +22,9 @@
 
 echo 'Will change the version in pom.xml files...'
 # check if the checkout was to checkout a branch
-if [ "$3" != '1' ]
-    then echo 'git checkout did not checkout a branch - quitting';exit
+if [ $3 != '1' ]
+    then echo 'ERROR git checkout did not checkout a branch - quitting';
+    exit 1
 fi
 
 # get current branch name
