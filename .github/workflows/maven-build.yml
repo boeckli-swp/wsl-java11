@@ -27,6 +27,7 @@ jobs:
       
     outputs:
       BRANCH_MVN_VERSION: ${{ steps.set_version.outputs.BRANCH_MVN_VERSION }}
+      ORIGINAL_MVN_VERSION: ${{ steps.set_version.outputs.ORIGINAL_MVN_VERSION }}
       GIT_BRANCH: ${{ steps.set_version.outputs.GIT_BRANCH }}
       
     steps:
