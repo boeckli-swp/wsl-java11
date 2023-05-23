@@ -89,7 +89,7 @@ jobs:
         # orig: curl 'https://maven.pkg.github.com/boeckli-swp/wsl-java11/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}-spring-boot.jar' \
         run: |
           echo "### Retrieving deployable jar ###"
-          curl 'https://boeckli1.jfrog.io/artifactory/boeckli-release/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}-spring-boot.jar' \
+          curl 'https://boeckli1.jfrog.io/artifactory/local-maven-release-repo/org/example/wsl-java11/${{ github.event.inputs.releaseVersion }}/wsl-java11-${{ github.event.inputs.releaseVersion }}-spring-boot.jar' \
             -H "Authorization: Bearer ${{ secrets.ARTIFACTORY_TOKEN }}" \
             -L \
             -o target/deployable.jar

@@ -95,7 +95,7 @@
                 <repository>
                     <id>central</id>
                     <name>boeckli-virtual</name>
-                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                    <url>https://boeckli1.jfrog.io/artifactory/virtual-maven-repo/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -107,7 +107,7 @@
                     <snapshots />
                     <id>snapshots</id>
                     <name>boeckli-virtual</name>
-                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                    <url>https://boeckli1.jfrog.io/artifactory/virtual-maven-repo/</url>
                 </repository>
             </repositories>
             <pluginRepositories>
@@ -117,25 +117,25 @@
                     </snapshots>
                     <id>central</id>
                     <name>boeckli-virtual</name>
-                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                    <url>https://boeckli1.jfrog.io/artifactory/virtual-maven-repo</url>
                 </pluginRepository>
                 <pluginRepository>
                     <snapshots />
                     <id>snapshots</id>
                     <name>boeckli-virtual</name>
-                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-virtual</url>
+                    <url>https://boeckli1.jfrog.io/artifactory/virtual-maven-repo</url>
                 </pluginRepository>
             </pluginRepositories>
             <distributionManagement>
                 <repository>
                     <id>central</id>
                     <name>a0tgibt9ketmk-artifactory-primary-0-releases</name>
-                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-release</url>
+                    <url>https://boeckli1.jfrog.io/artifactory/virtual-maven-repo</url>
                 </repository>
                 <snapshotRepository>
                     <id>snapshots</id>
                     <name>a0tgibt9ketmk-artifactory-primary-0-snapshots</name>
-                    <url>https://boeckli1.jfrog.io/artifactory/boeckli-snapshot</url>
+                    <url>https://boeckli1.jfrog.io/artifactory/virtual-maven-repo</url>
                 </snapshotRepository>
             </distributionManagement>
         </profile>
